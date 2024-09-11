@@ -8,9 +8,10 @@ fn main() {
         .map(|(i, _x)| i)
         .collect::<Vec<usize>>()
         .chunk_by(|lhs, rhs| rhs - lhs < 3)
-        .filter_map(|slice| match *slice {
-            [first, .., last] => Some((first, last)),
-            _ => None
+        .filter_map(|slice| {
+            let start = *slice.first()?;
+            let end = *slice.last()?;
+            return Some((start, end + 1));
         })
         .collect();
 

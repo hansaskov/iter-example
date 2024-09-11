@@ -11,7 +11,7 @@ fn main() {
         .collect::<Vec<usize>>()
         .chunk_by(|lhs, rhs| rhs - lhs < 3)
         .filter_map(|slice| match *slice {
-            [first, .., last] => Some((first, last)),
+            [beginning, .., end] => Some((beginning, end + 1)),
             _ => None,
         })
         .collect();

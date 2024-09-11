@@ -11,9 +11,9 @@ fn main() {
         .collect::<Vec<usize>>()
         .chunk_by(|lhs, rhs| rhs - lhs < 3)
         .filter_map(|slice| {
-            let start = *slice.first()?;
-            let end = *slice.last()?;
-            return Some((start, end + 1));
+            let beginning = *slice.first()?;
+            let end = *slice.last()? + 1;
+            return Some((beginning, end));
         })
         .collect();
 
